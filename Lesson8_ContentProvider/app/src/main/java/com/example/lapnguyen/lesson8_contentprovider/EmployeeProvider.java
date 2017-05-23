@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
+import com.example.lapnguyen.lesson8_contentprovider.DatabaseHelper;
 import java.util.HashMap;
 
 /**
@@ -49,23 +50,7 @@ public class EmployeeProvider extends ContentProvider {
     static final int DATABASE_VERSION = 1;
     static final String CREATE_DB_TABLE = "CREATE TABLE " + EMPLOYEE_TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT, "+"name TEXT NOT NULL ," + "division TEXT NOT NULL);";
 
-    private static class DatabaseHelper extends SQLiteOpenHelper{
 
-        DatabaseHelper(Context context) {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL(CREATE_DB_TABLE);
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS " + EMPLOYEE_TABLE_NAME );
-            onCreate(db);
-        }
-    }
 
     @Override
     public boolean onCreate() {
